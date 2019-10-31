@@ -3,4 +3,6 @@
 *.scss linguist-vendored
 *.html linguist-vendored
 *.php linguist-detectable=true
+*.html linguist-detectable=false
+
 CHANGELOG.md export-ignore
