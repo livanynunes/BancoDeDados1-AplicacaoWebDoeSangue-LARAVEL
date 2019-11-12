@@ -84,6 +84,42 @@
                 </div>
               @endif
             </div>
+
+            {{-- cpf --}}
+            <div class="bmd-form-group{{ $errors->has('user_cpf') ? ' has-danger' : '' }} mt-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="material-icons">assignment_ind</i>
+                  </span>
+                </div>
+                <input type="text" name="user_cpf" id="user_cpf" class="form-control" placeholder="{{ __('CPF...') }}" required>
+              </div>
+              @if ($errors->has('user_cpf'))
+                <div id="cpf-error" class="error text-danger pl-3" for="user_cpf" style="display: block;">
+                  <strong>{{ $errors->first('user_cpf') }}</strong>
+                </div>
+              @endif
+            </div>
+
+            {{-- telefone --}}
+            <div class="bmd-form-group{{ $errors->has('user_telefone') ? ' has-danger' : '' }} mt-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="material-icons">call</i>
+                  </span>
+                </div>
+                <input type="text" name="user_telefone" id="user_telefone" class="form-control" placeholder="{{ __('Telefone...') }}" required>
+              </div>
+              @if ($errors->has('user_telefone'))
+                <div id="cpf-error" class="error text-danger pl-3" for="user_telefone" style="display: block;">
+                  <strong>{{ $errors->first('user_telefone') }}</strong>
+                </div>
+              @endif
+            </div>
+
+
             <div class="form-check mr-auto ml-3 mt-3">
               <label class="form-check-label">
                 <input class="form-check-input" type="checkbox" id="policy" name="policy" {{ old('policy', 1) ? 'checked' : '' }} >
