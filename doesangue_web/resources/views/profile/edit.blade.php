@@ -1,5 +1,77 @@
 @extends('layouts.app', ['activePage' => 'profile', 'titlePage' => __('User Profile')])
 
+<script type="text/javascript" >
+    
+    function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('rua').value=("");
+            document.getElementById('bairro').value=("");
+            document.getElementById('cidade').value=("");
+            document.getElementById('uf').value=("");
+            document.getElementById('ibge').value=("");
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('rua').value=(conteudo.logradouro);
+            document.getElementById('bairro').value=(conteudo.bairro);
+            document.getElementById('cidade').value=(conteudo.localidade);
+            document.getElementById('uf').value=(conteudo.uf);
+            document.getElementById('ibge').value=(conteudo.ibge);
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+        
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('rua').value="...";
+                document.getElementById('bairro').value="...";
+                document.getElementById('cidade').value="...";
+                document.getElementById('uf').value="...";
+                
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    };
+
+    </script>
+   
 @section('content')
   <div class="content">
     <div class="container-fluid">
@@ -10,9 +82,9 @@
             @method('put')
 
             <div class="card ">
-              <div class="card-header card-header-primary">
-                <h4 class="card-title">{{ __('Edit Profile') }}</h4>
-                <p class="card-category">{{ __('User information') }}</p>
+              <div class="card-header card-header-danger">
+                <h4 class="card-title">{{ __('Editar Perfil') }}</h4>
+                <p class="card-category">{{ __('Informações do Usuário') }}</p>
               </div>
               <div class="card-body ">
                 @if (session('status'))
@@ -31,7 +103,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('Nome') }}</label>
                   <div class="col-sm-8">
                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Nome') }}" value="{{ old('name', auth()->user()->name) }}" required="true" aria-required="true"/>
+                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Nome') }}" value="{{ old('name', auth()->user()->name) }}" required="true" aria-required="true" readonly/>
                       @if ($errors->has('name'))
                         <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
                       @endif
@@ -39,8 +111,19 @@
                   </div>
                 </div>
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('CPF') }}</label>
                   <div class="col-sm-8">
+                  <div class="form-group{{ $errors->has('user_cpf') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('user_cpf') ? ' is-invalid' : '' }}" name="user_cpf" id="input-user_cpf" type="user_cpf" placeholder="{{ __('CPF') }}" value="{{ old('user_cpf', auth()->user()->user_cpf) }}" required="true" aria-required="true" Readonly />
+                      @if ($errors->has('user_cpf'))
+                        <span id="user_cpf-error" class="error text-danger" for="input-user_cpf">{{ $errors->first('user_cpf') }}</span>
+                      @endif
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
+                  <div class="col-sm-3">
                     <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                       <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required />
                       @if ($errors->has('email'))
@@ -48,14 +131,12 @@
                       @endif
                     </div>
                   </div>
-                </div>
-                <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Telefone') }}</label>
-                  <div class="col-sm-8">
-                    <div class="form-group{{ $errors->has('telefone') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('telefone') ? ' is-invalid' : '' }}" name="telefone" id="input-telefone" type="text" placeholder="{{ __('Telefone') }}" value="{{ old('telefone', auth()->user()->telefone) }}" required="true" aria-required="true"/>
-                      @if ($errors->has('telefone'))
-                        <span id="telefone-error" class="error text-danger" for="input-telefone">{{ $errors->first('telefone') }}</span>
+                  <div class="col-sm-3">
+                    <div class="form-group{{ $errors->has('user_telefone') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('user_telefone') ? ' is-invalid' : '' }}" name="user_telefone" id="input-user_telefone" type="text" placeholder="{{ __('Telefone') }}" value="{{ old('user_telefone', auth()->user()->user_telefone) }}" required="true" aria-required="true"/>
+                      @if ($errors->has('user_telefone'))
+                        <span id="user_telefone-error" class="error text-danger" for="input-user_telefone">{{ $errors->first('user_telefone') }}</span>
                       @endif
                     </div>
                   </div>
@@ -63,7 +144,6 @@
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Tipo Sanguíneo') }}</label>
                   <div class="col-sm-3">
-                  <fieldset disabled>
                     <select id="inputBlood" class="form-control">
                       <option selected>Selecionar</option>
                       <option value="A+">Tipo A+</option>
@@ -75,116 +155,71 @@
                       <option value="O+">Tipo O+</option>
                       <option value="O-">Tipo O-</option>
                   </select>
-                </fieldset>
                 </div>
-                  <label class="col-sm-2 col-form-label">{{ __('Gênero') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Peso') }}</label>
                   <div class="col-sm-3">
-                    <div class="form-check form-check-radio">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >
-                          Feminino
-                          <span class="circle">
-                              <span class="check"></span>
-                          </span>
-                      </label>
-                  </div>
-                  <div class="form-check form-check-radio">
-                      <label class="form-check-label">
-                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked>
-                          Masculino
-                          <span class="circle">
-                              <span class="check"></span>
-                          </span>
-                      </label>
-                  </div>
-                  <div class="form-check form-check-radio">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" >
-                          Outro
-                          <span class="circle">
-                              <span class="check"></span>
-                          </span>
-                      </label>
-                      <input type="text" class="form-control" placeholder="Outro">
-                  </div>                   
-              </div>
-            </div>
-
-                <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Endereço') }}</label>
-                  <div class="col-sm-8">
-                  <div class="form-group{{ $errors->has('address') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" id="input-address" type="address" placeholder="{{ __('Endereço') }}" value="{{ old('address', auth()->user()->address) }}" required />
-                      @if ($errors->has('address'))
-                        <span id="address-error" class="error text-danger" for="input-address">{{ $errors->first('address') }}</span>
+                  <div class="form-group{{ $errors->has('weight') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('weight') ? ' is-invalid' : '' }}" name="weight" id="input-weight" type="weight" placeholder="{{ __('Informe o peso') }}" value="{{ old('weight', auth()->user()->weight) }}" required="true" aria-required="true"/>
+                      @if ($errors->has('weight'))
+                        <span id="weight-error" class="error text-danger" for="input-weight">{{ $errors->first('weight') }}</span>
                       @endif
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Cidade') }}</label>
-                  <div class="col-sm-4">
-                    <div class="form-group{{ $errors->has('city') ? ' has-danger' : '' }}">
-                        <input class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" name="city" id="input-city" type="city" placeholder="{{ __('Cidade') }}" value="{{ old('city', auth()->user()->city) }}" required />
-                        @if ($errors->has('city'))
-                          <span id="city-error" class="error text-danger" for="input-city">{{ $errors->first('city') }}</span>
+                  <label class="col-sm-2 col-form-label">{{ __('CEP') }}</label>
+                    <div class="col-sm-3">
+                    <div class="form-group{{ $errors->has('cep') ? ' has-danger' : '' }}">
+                        <input class="form-control{{ $errors->has('cep') ? ' is-invalid' : '' }}" name="cep" id="input-cep" 
+                               type="cep" placeholder="{{ __('Informe o CEP') }}" value="{{ old('cep', auth()->user()->cep) }}" 
+                               required="true" aria-required="true" onblur="pesquisacep(this.value);"/>
+                        @if ($errors->has('cep'))
+                          <span id="cep-error" class="error text-danger" for="input-cep">{{ $errors->first('cep') }}</span>
                         @endif
                       </div>
                     </div>
-                    <label class="col-sm-2 col-form-label">{{ __('Estado') }}</label>
-                    <div class="col-sm-2">
-                      <select id="inputState" class="form-control">
-                        <option selected>Selecionar</option>
-                        <option value="AC">Acre</option>
-                        <option value="AL">Alagoas</option>
-                        <option value="AP">Amapá</option>
-                        <option value="AM">Amazonas</option>
-                        <option value="BA">Bahia</option>
-                        <option value="CE">Ceará</option>
-                        <option value="DF">Distrito Federal</option>
-                        <option value="ES">Espírito Santo</option>
-                        <option value="GO">Goiás</option>
-                        <option value="MA">Maranhão</option>
-                        <option value="MT">Mato Grosso</option>
-                        <option value="MS">Mato Grosso do Sul</option>
-                        <option value="MG">Minas Gerais</option>
-                        <option value="PA">Pará</option>
-                        <option value="PB">Paraíba</option>
-                        <option value="PR">Paraná</option>
-                        <option value="PE">Pernambuco</option>
-                        <option value="PI">Piauí</option>
-                        <option value="RJ">Rio de Janeiro</option>
-                        <option value="RN">Rio Grande do Norte</option>
-                        <option value="RS">Rio Grande do Sul</option>
-                        <option value="RO">Rondônia</option>
-                        <option value="RR">Roraima</option>
-                        <option value="SC">Santa Catarina</option>
-                        <option value="SP">São Paulo</option>
-                        <option value="SE">Sergipe</option>
-                        <option value="TO">Tocantins</option>    
-                    </select>  
+                  </div>
+                  <div class="row">
+                    <label class="col-sm-2 col-form-label">{{ __('Endereço') }}</label>
+                      <div class="col-sm-3">
+                        <input name="rua" id="rua"type="text" class="form-control" placeholder="Rua">
+                    </div>                 
+                      <div class="col-sm-2">
+                        <input name="number" id="number" type="text" class="form-control" placeholder="Número">
+                  </div>
+                  <div class="col-sm-3">
+                        <input name="complemento" id="complemento" type="text" class="form-control" placeholder="Complemento">
                   </div>
                 </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('') }}</label>
+                    <div class="col-sm-3">
+                      <input name="bairro" id="bairro"type="text" class="form-control" placeholder="Bairro">
+                </div>
+                <div class="col-sm-4">
+                  <input name="cidade" id="cidade" type="text" class="form-control" placeholder="Cidade">
               </div>
+              <div class="col-sm-1">
+                <input name="uf" id="uf" type="text" class="form-control" placeholder="Estado">
             </div>
-
-              <div class="card-footer ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
-              </div>
-            </div>
-          </form>
-        </div>
+          </div>
+        </div>             
       </div>
-      <div class="row">
+    </div>
+  </form>
+</div>
+</div>
+
+    <div class="row">
         <div class="col-md-12">
           <form method="post" action="{{ route('profile.password') }}" class="form-horizontal">
             @csrf
             @method('put')
 
-            <div class="card ">
-              <div class="card-header card-header-primary">
-                <h4 class="card-title">{{ __('Change password') }}</h4>
-                <p class="card-category">{{ __('Password') }}</p>
+             <div class="card ">
+              <div class="card-header card-header-danger">
+                <h4 class="card-title">{{ __('Trocar Senha') }}</h4>
+                <p class="card-category">{{ __('Senha') }}</p>
               </div>
               <div class="card-body ">
                 @if (session('status_password'))
@@ -200,10 +235,10 @@
                   </div>
                 @endif
                 <div class="row">
-                  <label class="col-sm-2 col-form-label" for="input-current-password">{{ __('Current Password') }}</label>
+                  <label class="col-sm-2 col-form-label" for="input-current-password">{{ __('Senha Atual') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('old_password') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('old_password') ? ' is-invalid' : '' }}" input type="password" name="old_password" id="input-current-password" placeholder="{{ __('Current Password') }}" value="" required />
+                      <input class="form-control{{ $errors->has('old_password') ? ' is-invalid' : '' }}" input type="password" name="old_password" id="input-current-password" placeholder="{{ __('Senha Atual') }}" value="" required />
                       @if ($errors->has('old_password'))
                         <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('old_password') }}</span>
                       @endif
@@ -211,10 +246,10 @@
                   </div>
                 </div>
                 <div class="row">
-                  <label class="col-sm-2 col-form-label" for="input-password">{{ __('New Password') }}</label>
+                  <label class="col-sm-2 col-form-label" for="input-password">{{ __('Nova Senha') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="input-password" type="password" placeholder="{{ __('New Password') }}" value="" required />
+                      <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="input-password" type="password" placeholder="{{ __('Nova Senha') }}" value="" required />
                       @if ($errors->has('password'))
                         <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>
                       @endif
@@ -222,21 +257,23 @@
                   </div>
                 </div>
                 <div class="row">
-                  <label class="col-sm-2 col-form-label" for="input-password-confirmation">{{ __('Confirm New Password') }}</label>
+                  <label class="col-sm-2 col-form-label" for="input-password-confirmation">{{ __('Confirmar Nova Senha') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group">
-                      <input class="form-control" name="password_confirmation" id="input-password-confirmation" type="password" placeholder="{{ __('Confirm New Password') }}" value="" required />
+                      <input class="form-control" name="password_confirmation" id="input-password-confirmation" type="password" placeholder="{{ __('Confirmar Nova Senha') }}" value="" required />
                     </div>
                   </div>
                 </div>
               </div>
               <div class="card-footer ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary">{{ __('Change password') }}</button>
+                <button type="submit" class="btn btn-danger">{{ __('Mudar Senha') }}</button>
               </div>
             </div>
           </form>
         </div>
       </div>
     </div>
-  </div>
+  </div> 
 @endsection
+
+        
