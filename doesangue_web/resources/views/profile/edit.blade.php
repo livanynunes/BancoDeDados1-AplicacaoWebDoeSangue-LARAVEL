@@ -63,6 +63,7 @@
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Tipo Sanguíneo') }}</label>
                   <div class="col-sm-3">
+                  <fieldset disabled>
                     <select id="inputBlood" class="form-control">
                       <option selected>Selecionar</option>
                       <option value="A+">Tipo A+</option>
@@ -74,6 +75,7 @@
                       <option value="O+">Tipo O+</option>
                       <option value="O-">Tipo O-</option>
                   </select>
+                </fieldset>
                 </div>
                   <label class="col-sm-2 col-form-label">{{ __('Gênero') }}</label>
                   <div class="col-sm-3">
@@ -165,6 +167,7 @@
                 </div>
               </div>
             </div>
+
               <div class="card-footer ml-auto mr-auto">
                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
               </div>
