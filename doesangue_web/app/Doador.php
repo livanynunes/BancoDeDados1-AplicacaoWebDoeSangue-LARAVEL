@@ -6,10 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Doador extends Authenticatable
 {
-    
     use Notifiable;
+
+    protected $guard = 'doador';
+    protected $table = 'doadores'; // importante, para reconhecer a tabela doadores
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','user_cpf','user_telefone','user_cpf',
+        'name', 'email', 'data_nascimento', 'd_cpf', 'd_endereco', 'd_telefone', 'password','d_peso','d_sexo',
     ];
 
     /**
@@ -38,7 +40,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $primaryKey = 'user_id';
+    // protected $primaryKey = 'user_id';
     
     
 
