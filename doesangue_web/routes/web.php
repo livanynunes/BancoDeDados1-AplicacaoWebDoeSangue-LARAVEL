@@ -55,3 +55,16 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
+
+
+Route::prefix('doador')->group(function(){
+
+	Route::get('/login', 'Auth\DoadorLoginController@showLoginForm')->name('doador.login');
+
+
+	Route::post('/login', 'Auth\DoadorLoginController@login')->name('doador.login.submit');
+
+	Route::get('/', 'DoadorController@index')->name('doador.dashboard');
+
+});
+

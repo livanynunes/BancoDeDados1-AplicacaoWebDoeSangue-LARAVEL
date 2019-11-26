@@ -46,6 +46,15 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'doador' => [
+            'driver' => 'session',
+            'provider' => 'doadores',
+        ],
+        'doador-api' => [
+            'driver' => 'token',
+            'provider' => 'doadores',
+        ],
+
     ],
 
     /*
@@ -70,6 +79,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        'doadores' => [
+            'driver' => 'eloquent',
+            'model' => App\Doador::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',
@@ -95,6 +109,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'doadores' => [
+            'provider' => 'doadores',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
