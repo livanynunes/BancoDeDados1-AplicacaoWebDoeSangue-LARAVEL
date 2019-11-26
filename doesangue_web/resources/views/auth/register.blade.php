@@ -8,8 +8,8 @@
         @csrf
 
         <div class="card card-login card-hidden mb-3">
-          <div class="card-header card-header-primary text-center">
-            <h4 class="card-title"><strong>{{ __('Register') }}</strong></h4>
+          <div class="card-header card-header-danger text-center">
+            <h3 class="card-title"><strong>{{ __('Registrar') }}</strong></h3>
             <div class="social-line">
               <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
                 <i class="fa fa-facebook-square"></i>
@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="card-body ">
-            <p class="card-description text-center">{{ __('Or Be Classical') }}</p>
+            {{-- <p class="card-description text-center">{{ __('Or Be Classical') }}</p> --}}
             <div class="bmd-form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -31,7 +31,7 @@
                       <i class="material-icons">face</i>
                   </span>
                 </div>
-                <input type="text" name="name" class="form-control" placeholder="{{ __('Name...') }}" value="{{ old('name') }}" required>
+                <input type="text" name="name" class="form-control" placeholder="{{ __('Nome...') }}" value="{{ old('name') }}" required>
               </div>
               @if ($errors->has('name'))
                 <div id="name-error" class="error text-danger pl-3" for="name" style="display: block;">
@@ -61,7 +61,7 @@
                     <i class="material-icons">lock_outline</i>
                   </span>
                 </div>
-                <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password...') }}" required>
+                <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Senha...') }}" required>
               </div>
               @if ($errors->has('password'))
                 <div id="password-error" class="error text-danger pl-3" for="password" style="display: block;">
@@ -76,7 +76,7 @@
                     <i class="material-icons">lock_outline</i>
                   </span>
                 </div>
-                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="{{ __('Confirm Password...') }}" required>
+                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="{{ __('Confirmar Senha...') }}" required>
               </div>
               @if ($errors->has('password_confirmation'))
                 <div id="password_confirmation-error" class="error text-danger pl-3" for="password_confirmation" style="display: block;">
@@ -119,6 +119,34 @@
               @endif
             </div>
 
+             {{-- tipo sanguíneo --}}
+             <div class="bmd-form-group{{ $errors->has('user_blood') ? ' has-danger' : '' }} mt-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="material-icons">local_hospital</i>
+                  </span>
+                </div>
+                {{-- <input type="text" name="user_blood" id="user_blood" class="form-control" placeholder="{{ __('Tipo Sanguíneo') }}" required> --}}
+                <select type="text" name="user_blood" id="user_blood" class="form-control" placeholder="{{ __('Tipo Sanguíneo...') }}" required>
+                  <option value="blood" selected>Selecionar Tipo Sanguíneo</option>
+                  <option value="A+">A+</option> 
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                  <option value="O+">O+</option> 
+                  <option value="O-">O-</option>
+                </select>
+              </div>
+              @if ($errors->has('user_blood'))
+                <div id="cpf-error" class="error text-danger pl-3" for="user_blood" style="display: block;">
+                  <strong>{{ $errors->first('user_blood') }}</strong>
+                </div>
+              @endif
+            </div>
+
 
             <div class="form-check mr-auto ml-3 mt-3">
               <label class="form-check-label">
@@ -131,7 +159,7 @@
             </div>
           </div>
           <div class="card-footer justify-content-center">
-            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Create account') }}</button>
+            <button type="submit" class="btn btn-danger btn-link btn-lg">{{ __('Criar') }}</button>
           </div>
         </div>
       </form>
