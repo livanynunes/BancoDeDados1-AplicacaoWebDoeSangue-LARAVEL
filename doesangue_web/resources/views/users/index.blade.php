@@ -6,9 +6,9 @@
       <div class="row">
         <div class="col-md-12">
             <div class="card">
-              <div class="card-header card-header-primary">
-                <h4 class="card-title ">{{ __('Users') }}</h4>
-                <p class="card-category"> {{ __('Here you can manage users') }}</p>
+              <div class="card-header card-header-danger">
+                <h4 class="card-title ">{{ __('Usuários') }}</h4>
+                <p class="card-category"> {{ __('Aqui você pode gerenciá-los') }}</p>
               </div>
               <div class="card-body">
                 @if (session('status'))
@@ -25,23 +25,38 @@
                 @endif
                 <div class="row">
                   <div class="col-12 text-right">
-                    <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
+                    <a href="{{ route('user.create') }}" class="btn btn-sm btn-danger">{{ __('Adicionar') }}</a>
                   </div>
                 </div>
                 <div class="table-responsive">
                   <table class="table">
-                    <thead class=" text-primary">
+                    <thead class=" text-danger">
                       <th>
-                          {{ __('Name') }}
+                          {{ __('Nome') }}
                       </th>
                       <th>
-                        {{ __('Email') }}
+                        {{ __('CPF') }}
                       </th>
                       <th>
-                        {{ __('Creation date') }}
+                        {{ __('E-mail') }}
                       </th>
+                      <th>
+                        {{ __('Telefone') }}
+                      </th>
+                      <th>
+                        {{ __('Tipo Sanguíneo') }}
+                      </th>
+                      <th>
+                        {{ __('Data de Inscrição') }}
+                      </th>
+                      {{-- <th>
+                        {{ __('cidade') }}
+                      </th>
+                      <th>
+                        {{ __('estado') }}
+                      </th> --}}
                       <th class="text-right">
-                        {{ __('Actions') }}
+                        {{ __('Ações') }}
                       </th>
                     </thead>
                     <tbody>
@@ -51,7 +66,16 @@
                             {{ $user->name }}
                           </td>
                           <td>
+                            {{ $user->user_cpf }}
+                          </td>
+                          <td>
                             {{ $user->email }}
+                          </td>
+                          <td>
+                            {{ $user->user_telefone }}
+                          </td>
+                          <td>
+                            {{ $user->blood }}
                           </td>
                           <td>
                             {{ $user->created_at->format('Y-m-d') }}

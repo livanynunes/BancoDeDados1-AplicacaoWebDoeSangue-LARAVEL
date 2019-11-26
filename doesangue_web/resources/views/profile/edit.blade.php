@@ -72,6 +72,8 @@
 
     </script>
    
+
+
 @section('content')
   <div class="content">
     <div class="container-fluid">
@@ -203,13 +205,15 @@
                 <input name="uf" id="uf" type="text" class="form-control" placeholder="Estado">
             </div>
           </div>
+          <div class="card-footer ml-auto mr-auto">
+            <button type="submit" class="btn btn-danger">{{ __('Salvar') }}</button>
+          </div>
         </div>             
       </div>
-    </div>
-  </form>
+   </form>
+ </div>
 </div>
-</div>
-
+  
     <div class="row">
         <div class="col-md-12">
           <form method="post" action="{{ route('profile.password') }}" class="form-horizontal">
@@ -268,12 +272,9 @@
               <div class="card-footer ml-auto mr-auto">
                 <button type="submit" class="btn btn-danger">{{ __('Mudar Senha') }}</button>
               </div>
-            </div>
           </form>
         </div>
+        </div>
       </div>
-    </div>
-  </div> 
+  </div>
 @endsection
-
-        

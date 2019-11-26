@@ -109,7 +109,7 @@
         <div class="col-md-4">
           <div class="card card-chart">
             <div class="card-header card-header-danger">
-              <div class="ct-chart" id="completedTasksChart"></div>
+              <div class="ct-chart" id="name"></div>
             </div>
             <div class="card-body">
               <h4 class="card-title">Completed Tasks</h4>
