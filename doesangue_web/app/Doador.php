@@ -19,7 +19,7 @@ class Doador extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'data_nascimento', 'd_cpf', 'd_endereco', 'd_telefone', 'password','d_peso','d_sexo',
+        'name', 'email', 'data_nascimento', 'd_cpf', 'd_endereco', 'd_telefone', 'password','d_peso','d_sexo','tipo_sangue',
     ];
 
     /**

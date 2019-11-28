@@ -69,7 +69,7 @@ class UserController extends Controller
                 ->except([$hasPassword ? '' : 'password']
         ));
 
-        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
+        return redirect()->route('user.index')->withStatus(__('Usuário atualizado com sucesso'));
     }
 
     /**

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Doador;
 use App\Http\Requests\UserRequest;
-
+use App\Http\Requests\DoadoresRequest;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Hash;
@@ -64,11 +64,11 @@ class GerenciarDoadorController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\View\View
      */
-    public function edit(Doador $user)
+    public function edit($user_id)
     {
-    	$users = DB::table('doadores')->get();
+    	$users = DB::table('doadores')->find($user_id);
 
-        return view('doadores.edit', ['users' => $users]);
+        return view('doadores.edit', compact('users'));
         // return view('doadores.edit');
     }
 
@@ -79,15 +79,23 @@ class GerenciarDoadorController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserRequest $request, User  $user)
+    public function update(Request $request, $user_id)
     {
-        $hasPassword = $request->get('password');
-        $user->update(
-            $request->merge(['password' => Hash::make($request->get('password'))])
-                ->except([$hasPassword ? '' : 'password']
-        ));
+        
+        $user = DB::table('doadores')
+        ->where('id', $user_id)
+        ->update(['name' => $request->name,
+        		'data_nascimento' => $request->data_nascimento,
+        		'd_cpf' => $request->d_cpf,
+        		'd_endereco' => $request->d_endereco,
+        		'd_telefone' => $request->d_telefone,
+        		'email' => $request->email,
+        		'd_peso' => $request->d_peso,
+        		'tipo_sangue' => $request->tipo_sangue,
+    	]);
 
-        return redirect()->route('doadores.index')->withStatus(__('User successfully updated.'));
+
+        return redirect()->route('doadores.index')->withStatus(__('Usuário atualizado com sucesso!'));
     }
 
     /**

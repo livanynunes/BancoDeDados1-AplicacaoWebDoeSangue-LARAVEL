@@ -47,9 +47,9 @@
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                       <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email', $user->email) }}" required />
-                      @if ($errors->has('email'))
+                     {{--  @if ($errors->has('email'))
                         <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
-                      @endif
+                      @endif --}}
                     </div>
                   </div>
                 </div>
@@ -85,7 +85,7 @@
                 </div>
               </div>
               <div class="card-footer ml-auto mr-auto">
-                <button type="submit" class="btn btn-danger">{{ __('Save') }}</button>
+                <button type="submit" class="btn btn-danger">{{ __('Salvar') }}</button>
               </div>
             </div>
           </form>
