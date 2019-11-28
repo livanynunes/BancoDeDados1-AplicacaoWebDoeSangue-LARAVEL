@@ -51,9 +51,30 @@ class GerenciarDoadorController extends Controller
      * @param  \App\User  $model
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UserRequest $request, User $model)
+    public function store(Request $request, Doador $model)
     {
-        $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
+        // $model->create($request->insert(['password' => Hash::make($request->get('password')),
+        // 						'name' => $request->name,
+				    //     		'data_nascimento' => $request->data_nascimento,
+				    //     		'd_cpf' => $request->d_cpf,
+				    //     		'd_endereco' => $request->d_endereco,
+				    //     		'd_telefone' => $request->d_telefone,
+				    //     		'email' => $request->email,
+				    //     		'd_peso' => $request->d_peso,
+				    //     		'tipo_sangue' => $request->tipo_sangue,
+    				// 			]));
+
+        $users = DB::table('doadores')->insert([
+        						'name' => $request->name,
+				        		'data_nascimento' => $request->data_nascimento,
+				        		'd_cpf' => $request->d_cpf,
+				        		'd_endereco' => $request->d_endereco,
+				        		'd_telefone' => $request->d_telefone,
+				        		'email' => $request->email,
+				        		'password' => Hash::make($request->get('password')),
+				        		'd_peso' => $request->d_peso,
+				        		'tipo_sangue' => $request->tipo_sangue,
+    							]);
 
         return redirect()->route('doadores.index')->withStatus(__('doador criado com sucesso.'));
     }
