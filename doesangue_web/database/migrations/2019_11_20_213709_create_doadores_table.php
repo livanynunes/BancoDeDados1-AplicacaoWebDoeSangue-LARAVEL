@@ -21,9 +21,11 @@ class CreateDoadoresTable extends Migration
             $table->string('d_endereco');
             $table->string('d_telefone');
             $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->double('d_peso');
             $table->enum('d_sexo',array('M', 'F'));
+            $table->enum('tipo_sangue',array('A+', 'B+', 'O+', 'AB+', 'A-', 'B-', 'O-', 'AB-'));
             $table->rememberToken();
             $table->timestamps();
         });

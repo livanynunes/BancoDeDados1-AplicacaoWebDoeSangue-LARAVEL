@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'dashboard', 'titlePage' => __('Doador Dashboard')])
+@extends('layouts.app', ['activePage' => 'doador-dashboard', 'titlePage' => __('Bem vindo, '.auth()->user()->name)])
 
 @section('content')
   <div class="content">

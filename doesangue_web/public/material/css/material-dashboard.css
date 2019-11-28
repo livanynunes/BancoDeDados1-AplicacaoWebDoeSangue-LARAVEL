@@ -8864,8 +8864,8 @@ a.text-dark:focus {
 }
 
 .btn.btn-primary.btn-link {
-  background-color: transparent;
-  color: #9c27b0;
+  background: linear-gradient(60deg, #be1313, #fd1d1d);
+  color: #fff;
   box-shadow: none;
 }
 
@@ -16309,7 +16309,7 @@ legend {
 }
 
 a {
-  color: #9c27b0;
+  color: #fd1d1d;
 }
 
 a:hover,
@@ -16777,7 +16777,7 @@ label {
 .card.bg-primary,
 .card.card-rotate.bg-primary .front,
 .card.card-rotate.bg-primary .back {
-  background: linear-gradient(60deg, #ab47bc, #8e24aa);
+  background: linear-gradient(60deg, #be1313, #fd1d1d);
 }
 
 .card .card-header-info .card-icon,

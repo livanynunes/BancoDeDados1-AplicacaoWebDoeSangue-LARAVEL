@@ -2,34 +2,20 @@
   <div class="container-fluid">
     <nav class="float-left">
       <ul>
+        
         <li>
-          <a href="https://www.creative-tim.com">
-              {{ __('Creative Tim') }}
-          </a>
-        </li>
-        <li>
-          <a href="https://creative-tim.com/presentation">
-              {{ __('About Us') }}
-          </a>
-        </li>
-        <li>
-          <a href="http://blog.creative-tim.com">
-              {{ __('Blog') }}
-          </a>
-        </li>
-        <li>
-          <a href="https://www.creative-tim.com/license">
-              {{ __('Licenses') }}
-          </a>
-        </li>
+            <a href="https://pt-br.facebook.com/hemominas/">
+                {{ __('Facebook') }}
+            </a>
+            </li>
       </ul>
     </nav>
     <div class="copyright float-right">
-      &copy;
-      <script>
-        document.write(new Date().getFullYear())
-      </script>, made with <i class="material-icons">favorite</i> by
-      <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> and <a href="https://www.updivision.com" target="_blank">UPDIVISION</a> for a better web.
-    </div>
+        &copy;
+        <script>
+            document.write(new Date().getFullYear())
+        </script>, feito com <i class="material-icons">favorite</i> por
+        <a href="https://www.linkedin.com/in/livanynunes/" target="_blank">Livany Nunes</a> e <a href="https://www.linkedin.com/in/anna-theresa-carlos-dos-santos-58b2b679/" target="_blank">Anna Theresa</a>.
+        </div>
   </div>
 </footer>

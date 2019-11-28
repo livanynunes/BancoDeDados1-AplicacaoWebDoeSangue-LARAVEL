@@ -29,22 +29,7 @@
             </p>
           </a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="material-icons">notifications</i>
-            <span class="notification">5</span>
-            <p class="d-lg-none d-md-block">
-              {{ __('Some Actions') }}
-            </p>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">{{ __('Mike John responded to your email') }}</a>
-            <a class="dropdown-item" href="#">{{ __('You have 5 new tasks') }}</a>
-            <a class="dropdown-item" href="#">{{ __('You\'re now friend with Andrew') }}</a>
-            <a class="dropdown-item" href="#">{{ __('Another Notification') }}</a>
-            <a class="dropdown-item" href="#">{{ __('Another One') }}</a>
-          </div>
-        </li>
+        
         <li class="nav-item dropdown">
           <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">person</i>
@@ -54,13 +39,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
 
-             {{-- @if (Illuminate\Support\Facades\Auth::guard("doador")->check()) 
-                  <a class="dropdown-item" href="{{ route('profile.doador-edit') }}">{{ __('Profile') }}</a>
-            @elseif(Illuminate\Support\Facades\Auth::guard("user")->check())
-                <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
-            @endif --}}
-
-            <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
+            <a class="dropdown-item" href="{{ route('profileDoador.edit') }}">{{ __('Profile') }}</a>
 
 
             

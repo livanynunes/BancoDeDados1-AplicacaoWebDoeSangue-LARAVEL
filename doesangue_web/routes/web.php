@@ -14,9 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+
+Route::get('/logout', 'HomeController@logout')->name('logout')->middleware('auth');
+
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('table-list', function () {
@@ -50,8 +56,13 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
+
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+
+	
+
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+	
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
@@ -65,6 +76,23 @@ Route::prefix('doador')->group(function(){
 	Route::post('/login', 'Auth\DoadorLoginController@login')->name('doador.login.submit');
 
 	Route::get('/', 'DoadorController@index')->name('doador.dashboard');
+
+	Route::get('/profile', ['as' => 'profileDoador.edit', 'uses' => 'DoadorController@doador_edit']);
+
+	// Route::get('/bancosDeSangue', ['as' => 'pagesDoadores.index', 'uses' => 'DoadorController@indexBanco']);
+
+	Route::get('/bancosDeSangue', ['as' => 'pagesDoadores.index', 'uses' => 'DoadorController@indexBanco']);
+
+	Route::get('/bancosDeSangue/cadastro', ['as' => 'pagesDoadores.novoBanco', 'uses' => 'DoadorController@novoBanco']);
+
+
+
+	Route::put('profile', ['as' => 'profile.update', 'uses' => 'DoadorController@update']);
+
+	// Route::post('profile', 'DoadorController@update')->name('profile.update');
+	
+	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'DoadorController@password']);
+
 
 });
 
