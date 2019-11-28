@@ -57,15 +57,7 @@ class DoadorController extends Controller
 
     public function update(Request $request)
     {
-        // $data = ['name'=>$request->name,
-        //         'd_endereco'=>$request->endereco,
-        //         'email'=>$request->email,
-        //         'd_telefone'=>$request->d_telefone];
-
-        // DB::table('doadores')->where('id',$request->id)->update($data);
-
-        // return back()->withStatus(__('Suas informações foram atualizadas.'));
-
+       
         auth()->user()->update($request->all());
 
         return back()->withStatus(__('Suas informações foram atualizadas.'));

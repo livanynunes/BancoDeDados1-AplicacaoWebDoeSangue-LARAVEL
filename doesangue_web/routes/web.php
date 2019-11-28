@@ -66,13 +66,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('doadores', 'GerenciarDoadorController', ['except' => ['show']]);
 
 	
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+	Route::get('profile', ['as' => 'profileAdmin.edit', 'uses' => 'ProfileController@edit']);
 
 	
 
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+	Route::put('profile', ['as' => 'profileAdmin.update', 'uses' => 'ProfileController@update']);
 	
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+	Route::put('profile/password', ['as' => 'profileAdmin.password', 'uses' => 'ProfileController@password']);
 });
 
 

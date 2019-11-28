@@ -1,18 +1,18 @@
-@extends('layouts.app', ['activePage' => 'profile', 'titlePage' => __('Perfil do '.auth()->user()->name)])
+@extends('layouts.app', ['activePage' => 'profile', 'titlePage' => __('DoeSangue.org')])
 
 @section('content')
   <div class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('profile.update') }}" autocomplete="off" class="form-horizontal">
+          <form method="post" action="{{ route('profileAdmin.update') }}" autocomplete="off" class="form-horizontal">
             @csrf
             @method('put')
 
             <div class="card ">
               <div class="card-header card-header-primary">
-                <h4 class="card-title">{{ __('Edit Profile') }}</h4>
-                <p class="card-category">{{ __('User information') }}</p>
+                <h4 class="card-title">{{ __('Edite seu perfil') }}</h4>
+                
               </div>
               <div class="card-body ">
                 @if (session('status'))
@@ -28,12 +28,23 @@
                   </div>
                 @endif
                 <div class="row"> {{-- edit name form --}}
-                  <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Nome') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                       <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}" required="true" aria-required="true"/>
                       @if ($errors->has('name'))
                         <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
+                      @endif
+                    </div>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <label class="col-sm-2 col-form-label">{{ __('CPF') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group{{ $errors->has('user_cpf') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('user_cpf') ? ' is-invalid' : '' }}" name="user_cpf" id="input-name" type="text" placeholder="{{ __('CPF') }}" required="true" value="{{ old('user_cpf', auth()->user()->user_cpf) }}" aria-required="true"/>
+                      @if ($errors->has('user_cpf'))
+                        <span id="user_cpf-error" class="error text-danger" for="input-user_cpf">{{ $errors->first('user_cpf') }}</span>
                       @endif
                     </div>
                   </div>
@@ -62,7 +73,7 @@
                 </div>
               </div>
               <div class="card-footer ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                <button type="submit" class="btn btn-danger">{{ __('Salvar') }}</button>
               </div>
             </div>
           </form>
@@ -70,14 +81,14 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('profile.password') }}" class="form-horizontal">
+          <form method="post" action="{{ route('profileAdmin.password') }}" class="form-horizontal">
             @csrf
             @method('put')
 
             <div class="card ">
               <div class="card-header card-header-primary">
-                <h4 class="card-title">{{ __('Change password') }}</h4>
-                <p class="card-category">{{ __('Password') }}</p>
+                <h4 class="card-title">{{ __('Mude sua senha') }}</h4>
+                
               </div>
               <div class="card-body ">
                 @if (session('status_password'))
@@ -124,7 +135,7 @@
                 </div>
               </div>
               <div class="card-footer ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary">{{ __('Change password') }}</button>
+                <button type="submit" class="btn btn-danger">{{ __('Mude minha senha') }}</button>
               </div>
             </div>
           </form>

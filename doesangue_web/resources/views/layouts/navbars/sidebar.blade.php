@@ -18,7 +18,7 @@
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
+              <a class="nav-link" href="{{ route('profileAdmin.edit') }}">
                <i class="material-icons">face</i>
                 <span class="sidebar-normal">{{ __('Editar meu perfil') }} </span>
               </a>

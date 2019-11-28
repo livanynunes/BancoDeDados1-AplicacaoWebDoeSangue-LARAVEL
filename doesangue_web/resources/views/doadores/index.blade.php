@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card">
               <div class="card-header card-header-danger">
-                <h4 class="card-title ">{{ __('Usuários') }}</h4>
+                <h4 class="card-title ">{{ __('Lista de doadores') }}</h4>
                 <p class="card-category"> {{ __('Aqui você pode gerenciá-los') }}</p>
               </div>
               <div class="card-body">
@@ -101,7 +101,7 @@
                           
                           <td class="td-actions text-right">
                             @if ($user->email != Auth::user()->email)
-                              <form action="{{ route('doadores.destroy', $user) }}" method="post">
+                              <form action="{{ route('doadores.destroy', $user->id) }}" method="post">
                                   @csrf
                                   @method('delete')
                               
@@ -109,7 +109,7 @@
                                     <i class="material-icons">edit</i>
                                     <div class="ripple-container"></div>
                                   </a>
-                                  <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Certeza de qque deseja excluir este usuário?") }}') ? this.parentElement.submit() : ''">
+                                  <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Certeza de qque deseja excluir este doador?") }}') ? this.parentElement.submit() : ''">
                                       <i class="material-icons">close</i>
                                       <div class="ripple-container"></div>
                                   </button>

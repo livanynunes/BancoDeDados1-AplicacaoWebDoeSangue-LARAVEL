@@ -45,7 +45,7 @@
                 <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
             @endif --}}
 
-            <a class="dropdown-item " href="{{ route('profile.edit') }}">{{ __('Ver meu perfil') }}</a>
+            <a class="dropdown-item " href="{{ route('profileAdmin.edit') }}">{{ __('Ver meu perfil') }}</a>
 
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Sair') }}</a>
