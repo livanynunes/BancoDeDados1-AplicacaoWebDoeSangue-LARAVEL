@@ -2,8 +2,8 @@
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
   <div class="container">
     <div class="navbar-wrapper">
-      {{-- <a class="navbar-brand" href="{{ route('home') }}">{{ $title }}</a> --}}
-      <p class="navbar-brand">{{ $title }}</p>
+      <a class="navbar-brand" href="{{ route('index') }}">{{ $title }}</a>
+      {{-- <p class="navbar-brand">{{ $title }}</p> --}}
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
       <span class="sr-only">Toggle navigation</span>

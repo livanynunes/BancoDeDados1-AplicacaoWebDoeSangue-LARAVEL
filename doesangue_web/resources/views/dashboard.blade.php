@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'dashboard', 'titlePage' => __('Dashboard Admin')])
+@extends('layouts.app', ['activePage' => 'dashboard', 'titlePage' => __('Bem vindo, '.auth()->user()->name)])
 
 @section('content')
   <div class="content">

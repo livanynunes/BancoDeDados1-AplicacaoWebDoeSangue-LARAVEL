@@ -45,9 +45,6 @@ class DoadorController extends Controller
             ->select('doacao.*', 'bancodesangue.nome')
             ->get();
 
-        // $doacao = DB::table('doacao')->get();
-
-        // return view('pagesDoadores.index', ['doacao' => $model->paginate(15)])->with('doacao',$doacao);
             return view('pagesDoadores.index', compact('doacao'));
     }
 

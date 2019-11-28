@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'login', 'title' => __('Faça login como voluntário')])
+@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'login', 'title' => __('DoeSangue.com')])
 
 @section('content')
 <div class="container" style="height: auto;">

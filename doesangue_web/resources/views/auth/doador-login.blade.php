@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'doador-login', 'title' => __('Faça login como doador')])
+@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'doador-login', 'title' => __('DoeSangue.com')])
 
 @section('content')
 <div class="container" style="height: auto;">

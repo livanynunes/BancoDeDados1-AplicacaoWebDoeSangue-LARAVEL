@@ -13,8 +13,9 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
+// Route::get('/index', ['as' => 'index', 'uses' => 'HomeController@logout']);
 
 
 Auth::routes();

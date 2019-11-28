@@ -342,9 +342,9 @@ md = {
       /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 
       dataCompletedTasksChart = {
-        labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
+        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
         series: [
-          [230, 750, 450, 300, 280, 240, 200, 190]
+          [2, 7, 4, 3, 2, 2, 2, 1,0,0,0,2]
         ]
       };
 
@@ -353,7 +353,7 @@ md = {
           tension: 0
         }),
         low: 0,
-        high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+        high: 20, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
         chartPadding: {
           top: 0,
           right: 0,
