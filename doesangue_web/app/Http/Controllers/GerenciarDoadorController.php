@@ -53,16 +53,7 @@ class GerenciarDoadorController extends Controller
      */
     public function store(Request $request, Doador $model)
     {
-        // $model->create($request->insert(['password' => Hash::make($request->get('password')),
-        // 						'name' => $request->name,
-				    //     		'data_nascimento' => $request->data_nascimento,
-				    //     		'd_cpf' => $request->d_cpf,
-				    //     		'd_endereco' => $request->d_endereco,
-				    //     		'd_telefone' => $request->d_telefone,
-				    //     		'email' => $request->email,
-				    //     		'd_peso' => $request->d_peso,
-				    //     		'tipo_sangue' => $request->tipo_sangue,
-    				// 			]));
+        
 
         $users = DB::table('doadores')->insert([
         						'name' => $request->name,
@@ -125,9 +116,11 @@ class GerenciarDoadorController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(User  $user)
+    public function destroy($user_id)
     {
-        $user->delete();
+
+    	$user = DB::table('doadores')->where('id', $user_id)->delete();
+
 
         return redirect()->route('doadores.index')->withStatus(__('Doador deletado com sucesso.'));
     }
