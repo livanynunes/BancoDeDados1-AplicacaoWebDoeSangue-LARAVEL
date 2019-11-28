@@ -12,7 +12,6 @@
             @csrf
             @method('put')
             
-              {{ $users->id }}
             
             <div class="card ">
               <div class="card-header card-header-danger">
