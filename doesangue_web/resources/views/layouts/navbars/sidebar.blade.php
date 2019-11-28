@@ -19,14 +19,24 @@
       </li>
       <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('profile.edit') }}">
-               <i class="material-icons">content_paste</i>
-                <span class="sidebar-normal">{{ __('User profile') }} </span>
+               <i class="material-icons">face</i>
+                <span class="sidebar-normal">{{ __('Editar meu perfil') }} </span>
               </a>
       </li>
      <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
       <a class="nav-link" href="{{ route('user.index') }}">
-        <span class="sidebar-mini"> UM </span>
-        <span class="sidebar-normal"> {{ __('User Management') }} </span>
+        <i class="material-icons">assignment_ind</i>
+        {{-- <i class="material-icons">person_pin</i> --}}
+
+        <span class="sidebar-normal"> {{ __('Gerenciar voluntários') }} </span>
+      </a>
+    </li>
+    <li class="nav-item{{ $activePage == 'doador-management' ? ' active' : '' }}">
+      <a class="nav-link" href="{{ route('user.index') }}">
+        {{-- <i class="material-icons">assignment_ind</i> --}}
+        <i class="material-icons">person_pin</i>
+
+        <span class="sidebar-normal"> {{ __('Gerenciar doadores') }} </span>
       </a>
     </li>
       <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">

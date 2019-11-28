@@ -43,6 +43,17 @@
                   </div>
                 </div>
                 <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Telefone') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group{{ $errors->has('user_telefone') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('user_telefone') ? ' is-invalid' : '' }}" name="user_telefone" id="input-telefone" type="telefone" placeholder="{{ __('Telefone') }}" value="{{ old('user_telefone') }}" required />
+                      @if ($errors->has('user_telefone'))
+                        <span id="telefone-error" class="error text-danger" for="input-telefone">{{ $errors->first('user_telefone') }}</span>
+                      @endif
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
                   <label class="col-sm-2 col-form-label" for="input-password">{{ __(' Password') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
