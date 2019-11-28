@@ -26,6 +26,11 @@ Route::get('/logout', 'HomeController@logout')->name('logout')->middleware('auth
 
 
 Route::group(['middleware' => 'auth'], function () {
+	Route::get('/', function () {
+    return view('dashboard');
+    
+})->name('index');
+
 	Route::get('table-list', function () {
 		return view('pages.table_list');
 	})->name('table');
@@ -58,6 +63,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 
+	Route::resource('doadores', 'GerenciarDoadorController', ['except' => ['show']]);
+
+	
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 
 	

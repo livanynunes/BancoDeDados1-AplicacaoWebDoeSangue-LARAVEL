@@ -32,7 +32,7 @@
       </a>
     </li>
     <li class="nav-item{{ $activePage == 'doador-management' ? ' active' : '' }}">
-      <a class="nav-link" href="{{ route('user.index') }}">
+      <a class="nav-link" href="{{ route('doadores.index') }}">
         {{-- <i class="material-icons">assignment_ind</i> --}}
         <i class="material-icons">person_pin</i>
 

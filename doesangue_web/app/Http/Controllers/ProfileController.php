@@ -40,4 +40,8 @@ class ProfileController extends Controller
 
         return back()->withStatusPassword(__('Sua senha foi atualizada'));
     }
+
+    public function edit(){
+        return view('profile.edit');
+    }
 }

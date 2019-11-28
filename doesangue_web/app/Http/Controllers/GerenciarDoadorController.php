@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Doador;
 use App\Http\Requests\UserRequest;
-use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\PasswordRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Collection;
+
+
+
+class GerenciarDoadorController extends Controller
 {
     /**
      * Display a listing of the users
@@ -14,9 +22,16 @@ class UserController extends Controller
      * @param  \App\User  $model
      * @return \Illuminate\View\View
      */
-    public function index(User $model)
+    public function index(Doador $model)
     {
-        return view('users.index', ['users' => $model->paginate(15)]);
+
+   // 	 $users = DB::table('doadores')->get();
+
+        // return view('doadores.index', ['users' => $users]);
+
+        //return view('doadores.index', compact('users'));
+
+         return view('doadores.index', ['doadores' => $model->paginate(15)]);
     }
 
     /**
@@ -26,7 +41,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('doadores.create');
     }
 
     /**
@@ -40,7 +55,7 @@ class UserController extends Controller
     {
         $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
 
-        return redirect()->route('user.index')->withStatus(__('User successfully created.'));
+        return redirect()->route('doadores.index')->withStatus(__('doador criado com sucesso.'));
     }
 
     /**
@@ -49,9 +64,12 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\View\View
      */
-    public function edit(User $user)
+    public function edit(Doador $user)
     {
-        return view('users.edit', compact('user'));
+    	$users = DB::table('doadores')->get();
+
+        return view('doadores.edit', ['users' => $users]);
+        // return view('doadores.edit');
     }
 
     /**
@@ -69,7 +87,7 @@ class UserController extends Controller
                 ->except([$hasPassword ? '' : 'password']
         ));
 
-        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
+        return redirect()->route('doadores.index')->withStatus(__('User successfully updated.'));
     }
 
     /**
@@ -82,6 +100,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('user.index')->withStatus(__('Voluntário deletado com sucesso.'));
+        return redirect()->route('doadores.index')->withStatus(__('Doador deletado com sucesso.'));
     }
 }

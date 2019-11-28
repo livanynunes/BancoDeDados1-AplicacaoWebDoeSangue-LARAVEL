@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'user-management', 'titlePage' => __('DoeSangue.org')])
+@extends('layouts.app', ['activePage' => 'doador-management', 'titlePage' => __('Gerenciar doadores')])
 
 @section('content')
   <div class="content">
@@ -6,9 +6,9 @@
       <div class="row">
         <div class="col-md-12">
             <div class="card">
-              <div class="card-header card-header-primary">
-                <h4 class="card-title ">{{ __('Gerenciar voluntários') }}</h4>
-                <p class="card-category"> {{ __('Aqui você pode adicionar, editar ou excluir os voluntários') }}</p>
+              <div class="card-header card-header-danger">
+                <h4 class="card-title ">{{ __('Usuários') }}</h4>
+                <p class="card-category"> {{ __('Aqui você pode gerenciá-los') }}</p>
               </div>
               <div class="card-body">
                 @if (session('status'))
@@ -25,48 +25,91 @@
                 @endif
                 <div class="row">
                   <div class="col-12 text-right">
-                    <a href="{{ route('user.create') }}" class="btn btn-sm btn-danger">{{ __('Adicionar voluntário') }}</a>
+                    <a href="{{ route('user.create') }}" class="btn btn-sm btn-danger">{{ __('Adicionar') }}</a>
                   </div>
                 </div>
                 <div class="table-responsive">
                   <table class="table">
-                    <thead class=" text-primary">
+                    <thead class=" text-danger">
                       <th>
                           {{ __('Nome') }}
                       </th>
+                      {{-- <th>
+                         {{ __('Nascimento') }}
+                      </th> --}}
                       <th>
-                        {{ __('Email') }}
+                        {{ __('CPF') }}
                       </th>
                       <th>
-                        {{ __('Data de criação') }}
+                         {{ __('Endereço') }}
                       </th>
+                      <th>
+                         {{ __('Telefone') }}
+                      </th>
+                      <th>
+                        {{ __('E-mail') }}
+                      </th>
+                      <th>
+                        {{ __('Peso') }}
+                      </th>
+                      <th>
+                        {{ __('Sexo') }}
+                      </th>
+                      <th>
+                        {{ __('Tipo Sanguíneo') }}
+                      </th>
+                      {{-- <th>
+                        {{ __('cidade') }}
+                      </th>
+                      <th>
+                        {{ __('estado') }}
+                      </th> --}}
                       <th class="text-right">
                         {{ __('Ações') }}
                       </th>
                     </thead>
                     <tbody>
-                      @foreach($users as $user)
+                      @foreach($doadores as $user)
                         <tr>
                           <td>
                             {{ $user->name }}
+                          </td>
+                          {{-- <td>
+                            {{ $user->data_nascimento->format('Y-m-d') }}
+                          </td> --}}
+                          <td>
+                            {{ $user->d_cpf }}
+                          </td>
+                          <td>
+                            {{ $user->d_endereco }}
+                          </td>
+                          <td>
+                            {{ $user->d_telefone }}
                           </td>
                           <td>
                             {{ $user->email }}
                           </td>
                           <td>
-                            {{ $user->created_at->format('Y-m-d') }}
+                            {{ $user->d_peso }}
                           </td>
+                          <td>
+                            {{ $user->d_sexo }}
+                          </td>
+                          <td>
+                            {{ $user->tipo_sangue }}
+                          </td>
+                          
                           <td class="td-actions text-right">
                             @if ($user->id != auth()->id())
-                              <form action="{{ route('user.destroy', $user) }}" method="post">
+                              <form action="{{ route('doadores.destroy', $user) }}" method="post">
                                   @csrf
                                   @method('delete')
                               
-                                  <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('user.edit', $user) }}" data-original-title="" title="">
+                                  <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('doadores.edit', $user) }}" data-original-title="" title="">
                                     <i class="material-icons">edit</i>
                                     <div class="ripple-container"></div>
                                   </a>
-                                  <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Você tem certeza sobre excluir esta pessoa?") }}') ? this.parentElement.submit() : ''">
+                                  <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Certeza de qque deseja excluir este usuário?") }}') ? this.parentElement.submit() : ''">
                                       <i class="material-icons">close</i>
                                       <div class="ripple-container"></div>
                                   </button>
