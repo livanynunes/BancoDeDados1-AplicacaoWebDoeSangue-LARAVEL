@@ -18,55 +18,7 @@
             
           </div>
         </div>
-        <div class="col-lg-6 col-md-12">
-          <div class="card">
-            <div class="card-header card-header-warning">
-              <h4 class="card-title">Últimas doações</h4>
-              {{-- <p class="card-category">New employees on 15th September, 2016</p> --}}
-            </div>
-            <div class="card-body table-responsive">
-              <table class="table table-hover">
-                <thead class=" text-primary">
-                      <th>
-                          {{ __('Código') }}
-                      </th>
-                      <th>
-                        {{ __('CPF doador') }}
-                      </th>
-                      <th>
-                        {{ __('Local') }}
-                      </th>
-                      
-                    </thead>
-                    <tbody>
-                      @php
-                        {{$doacao= DB::table('doacao')
-                        ->join('bancodesangue', 'doacao.Bsangue', '=', 'bancodesangue.id')
-                        ->select('doacao.*', 'bancodesangue.nome')
-                        ->get();
-                        }}
-
-                      @endphp
-                      @foreach($doacao as $doei)
-
-                        <tr>
-                          <td>
-                            {{ $doei->id }}
-                          </td>
-                          <td>
-                            {{ $doei->Dcpf }}
-                          </td>
-                          <td>
-                            {{ $doei->nome }}
-                          </td>
-                          
-                        </tr>
-                      @endforeach
-                    </tbody>
-              </table>
-            </div>
-
-          </div>
+        
         </div>
       </div>
       <div class="row">
@@ -90,8 +42,7 @@
                       @php
                         {{$bancodesangue= DB::table('bancodesangue')
                         ->join('localbanco', 'bancodesangue.id', '=', 'localbanco.Bnumero')
-                        ->join('doacao', 'bancodesangue.id', '=', 'doacao.Bsangue')
-                        ->select('bancodesangue.nome', 'doacao.sangue_tipo','localbanco.Blocal')
+                        ->select('bancodesangue.nome','localbanco.Blocal')
                         ->get();
                         }}
                       @endphp

@@ -47,7 +47,7 @@ class DoadorController extends Controller
 
         $doacao= DB::table('doacao')
             ->join('bancodesangue', 'doacao.Bsangue', '=', 'bancodesangue.id')
-            ->select('doacao.*', 'bancodesangue.nome')
+            ->select('doacao.*', 'bancodesangue.nome')->where('doacao.Dcpf','=',auth()->user()->d_cpf)
             ->get();
 
             return view('pagesDoadores.index', compact('doacao'));
