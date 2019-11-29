@@ -80,7 +80,7 @@ class GerenciarDoadorController extends Controller
      */
     public function edit($user_id)
     {
-    	$users = DB::table('doadores')->find($user_id)->paginate(15);
+    	$users = DB::table('doadores')->find($user_id);
 
         return view('doadores.edit', compact('users'));
         // return view('doadores.edit');
