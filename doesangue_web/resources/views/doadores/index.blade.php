@@ -25,7 +25,7 @@
                 @endif
                 <div class="row">
                   <div class="col-12 text-right">
-                    <a href="{{ route('user.create') }}" class="btn btn-sm btn-danger">{{ __('Adicionar') }}</a>
+                    <a href="{{ route('doadores.create') }}" class="btn btn-sm btn-danger">{{ __('Adicionar') }}</a>
                   </div>
                 </div>
                 <div class="table-responsive">

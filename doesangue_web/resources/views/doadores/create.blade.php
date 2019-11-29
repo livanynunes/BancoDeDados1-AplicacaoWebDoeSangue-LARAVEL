@@ -78,7 +78,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('user.store') }}" autocomplete="off" class="form-horizontal">
+          <form method="post" action="{{ route('doadores.store') }}" autocomplete="off" class="form-horizontal">
             @csrf
             @method('post')
 
@@ -90,14 +90,14 @@
               <div class="card-body ">
                 <div class="row">
                   <div class="col-md-12 text-right">
-                      <a href="{{ route('user.index') }}" class="btn btn-sm btn-danger">{{ __('Voltar') }}</a>
+                      <a href="{{ route('doadores.index') }}" class="btn btn-sm btn-danger">{{ __('Voltar') }}</a>
                   </div>
                 </div>
                     <div class="row">
                       <label class="col-sm-2 col-form-label">{{ __('Nome') }}</label>
                       <div class="col-sm-8">
                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                          <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Nome') }}" value="{{ old('name', auth()->user()->name) }}" required="true" aria-required="true"/>
+                          <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Nome') }}" value="" required="true" aria-required="true"/>
                           @if ($errors->has('name'))
                             <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
                           @endif
@@ -106,11 +106,20 @@
                     </div>
                     <div class="row">
                       <label class="col-sm-2 col-form-label">{{ __('CPF') }}</label>
-                      <div class="col-sm-8">
-                      <div class="form-group{{ $errors->has('user_cpf') ? ' has-danger' : '' }}">
-                          <input class="form-control{{ $errors->has('user_cpf') ? ' is-invalid' : '' }}" name="user_cpf" id="input-user_cpf" type="user_cpf" placeholder="{{ __('CPF') }}" value="{{ old('user_cpf', auth()->user()->user_cpf) }}" required="true" aria-required="true"/>
-                          @if ($errors->has('user_cpf'))
-                            <span id="user_cpf-error" class="error text-danger" for="input-user_cpf">{{ $errors->first('user_cpf') }}</span>
+                      <div class="col-sm-3">
+                        <div class="form-group{{ $errors->has('user_cpf') ? ' has-danger' : '' }}">
+                            <input class="form-control{{ $errors->has('user_cpf') ? ' is-invalid' : '' }}" name="user_cpf" id="input-user_cpf" type="user_cpf" placeholder="{{ __('CPF') }}" value="" required="true" aria-required="true"/>
+                            @if ($errors->has('user_cpf'))
+                              <span id="user_cpf-error" class="error text-danger" for="input-user_cpf">{{ $errors->first('user_cpf') }}</span>
+                            @endif
+                          </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">{{ __('Data de Nascimento') }}</label>
+                      <div class="col-sm-3">
+                      <div class="form-group{{ $errors->has('data_nascimento') ? ' has-danger' : '' }}">
+                          <input class="form-control{{ $errors->has('data_nascimento') ? ' is-invalid' : '' }}" name="data_nascimento" id="input-data_nascimento" type="data_nascimento" placeholder="{{ __('Data de Nascimento') }}" value="" required="true" aria-required="true"/>
+                          @if ($errors->has('data_nascimento'))
+                            <span id="data_nascimento-error" class="error text-danger" for="input-data_nascimento">{{ $errors->first('data_nascimento') }}</span>
                           @endif
                         </div>
                       </div>
@@ -119,7 +128,7 @@
                       <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
                       <div class="col-sm-3">
                         <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                          <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required />
+                          <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="" required />
                           @if ($errors->has('email'))
                             <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
                           @endif
@@ -128,38 +137,111 @@
                       <label class="col-sm-2 col-form-label">{{ __('Telefone') }}</label>
                       <div class="col-sm-3">
                         <div class="form-group{{ $errors->has('user_telefone') ? ' has-danger' : '' }}">
-                          <input class="form-control{{ $errors->has('user_telefone') ? ' is-invalid' : '' }}" name="user_telefone" id="input-user_telefone" type="text" placeholder="{{ __('Telefone') }}" value="{{ old('user_telefone', auth()->user()->user_telefone) }}" required="true" aria-required="true"/>
+                          <input class="form-control{{ $errors->has('user_telefone') ? ' is-invalid' : '' }}" name="user_telefone" id="input-user_telefone" type="text" placeholder="{{ __('Telefone') }}" value="" required="true" aria-required="true"/>
                           @if ($errors->has('user_telefone'))
                             <span id="user_telefone-error" class="error text-danger" for="input-user_telefone">{{ $errors->first('user_telefone') }}</span>
                           @endif
                         </div>
                       </div>
-                    </div>
+                    </div><hr>
                     <div class="row">
                       <label class="col-sm-2 col-form-label">{{ __('Tipo Sanguíneo') }}</label>
-                      <div class="col-sm-3">
-                        <select id="inputBlood" class="form-control">
-                          <option selected>Selecionar</option>
-                          <option value="A+">Tipo A+</option>
-                          <option value="A-">Tipo A-</option>
-                          <option value="B+">Tipo B+</option>
-                          <option value="B-">Tipo B-</option>
-                          <option value="AB+">Tipo AB+</option>
-                          <option value="AB-">Tipo AB-</option>
-                          <option value="O+">Tipo O+</option>
-                          <option value="O-">Tipo O-</option>
-                      </select>
+                      <div class="col-sm-4">
+                          <div class="form-check form-check-radio">
+                              <label class="form-check-label">
+                                  <input class="form-check-input" type="radio" name="exampleRadios" id="input-user_blood" value="option1" >
+                                  A+
+                                  <span class="circle">
+                                      <span class="check"></span>
+                                  </span>
+                              </label>
+                          </div>
+                          <div class="form-check form-check-radio">
+                              <label class="form-check-label">
+                                  <input class="form-check-input" type="radio" name="exampleRadios" id="input-user_blood" value="option2" checked>
+                                  B+
+                                  <span class="circle">
+                                      <span class="check"></span>
+                                  </span>
+                              </label>
+                          </div>
+                          <div class="form-check form-check-radio">
+                              <label class="form-check-label">
+                                  <input class="form-check-input" type="radio" name="exampleRadios" id="input-user_blood" value="option3" checked>
+                                  AB+
+                                  <span class="circle">
+                                      <span class="check"></span>
+                                  </span>
+                              </label>
+                          </div>
+                          <div class="form-check form-check-radio">
+                              <label class="form-check-label">
+                                  <input class="form-check-input" type="radio" name="exampleRadios" id="input-user_blood" value="option4" checked>
+                                  O+
+                                  <span class="circle">
+                                      <span class="check"></span>
+                                  </span>
+                              </label>
+                          </div>
                     </div>
-                      <label class="col-sm-2 col-form-label">{{ __('Peso') }}</label>
-                      <div class="col-sm-3">
-                      <div class="form-group{{ $errors->has('weight') ? ' has-danger' : '' }}">
-                          <input class="form-control{{ $errors->has('weight') ? ' is-invalid' : '' }}" name="weight" id="input-weight" type="weight" placeholder="{{ __('Informe o peso') }}" value="{{ old('weight', auth()->user()->weight) }}" required="true" aria-required="true"/>
-                          @if ($errors->has('weight'))
-                            <span id="weight-error" class="error text-danger" for="input-weight">{{ $errors->first('weight') }}</span>
-                          @endif
+                    <div class="col-sm-4">
+                        <div class="form-check form-check-radio">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="input-user_blood" value="option1" >
+                                A-
+                                <span class="circle">
+                                    <span class="check"></span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-radio">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="input-user_blood" value="option2" checked>
+                                B-
+                                <span class="circle">
+                                    <span class="check"></span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-radio">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="input-user_blood" value="option3" checked>
+                                AB-
+                                <span class="circle">
+                                    <span class="check"></span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-radio">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="input-user_blood" value="option4" checked>
+                                O-
+                                <span class="circle">
+                                    <span class="check"></span>
+                                </span>
+                            </label>
                         </div>
                       </div>
                     </div>
+                    <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Sexo') }}</label>
+                  <div class="col-sm-3">
+                    <select id="d_sexo" class="form-control">
+                      <option selected>Selecionar</option>
+                      <option value="F">Feminino</option>
+                      <option value="M">Masculino</option>
+                  </select>
+                </div>
+                  <label class="col-sm-2 col-form-label">{{ __('Peso') }}</label>
+                  <div class="col-sm-3">
+                  <div class="form-group{{ $errors->has('d_peso') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('d_peso') ? ' is-invalid' : '' }}" name="d_peso" id="input-d_peso" type="d_peso" placeholder="{{ __('Informe o peso') }}" value="" required="true" aria-required="true"/>
+                      @if ($errors->has('d_peso'))
+                        <span id="d_peso" class="error text-danger" for="input-d_peso">{{ $errors->first('d_peso') }}</span>
+                      @endif
+                    </div>
+                  </div>
+                </div><hr>
                     <div class="row">
                       <label class="col-sm-2 col-form-label">{{ __('CEP') }}</label>
                         <div class="col-sm-3">

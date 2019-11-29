@@ -35,6 +35,9 @@
                           {{ __('Nome') }}
                       </th>
                       <th>
+                        {{ __('CPF') }}
+                    </th>
+                      <th>
                         {{ __('Email') }}
                       </th>
                       <th>
@@ -49,6 +52,9 @@
                         <tr>
                           <td>
                             {{ $user->name }}
+                          </td>
+                          <td>
+                            {{ $user->user_cpf }}
                           </td>
                           <td>
                             {{ $user->email }}
