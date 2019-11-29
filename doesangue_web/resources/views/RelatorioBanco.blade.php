@@ -38,7 +38,9 @@
                               ->groupBy('Bsangue')
                               ->get();
 
-                            
+                            // $teste = DB::table('localbanco')->select('Bnumero')->where
+
+
                             
                         }}
 
@@ -46,7 +48,7 @@
                       @foreach($doacoes as $info)
                         <tr>
                           <td>
-                            {{ $info->Bsangue }}
+                            {{ DB::table('bancodesangue')->select('nome')->where('id', $info->Bsangue)->get()[0]->nome }}
                           </td>
                           <td>
                             {{ $info->amount }}
