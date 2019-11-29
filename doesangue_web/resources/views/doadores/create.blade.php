@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'doador-management', 'titlePage' => __('Gerenciar Doador')])
+@extends('layouts.app', ['activePage' => 'doador-management', 'titlePage' => __('DoeSangue.org')])
 
 
  
@@ -40,6 +40,7 @@
                     <div class="form-group{{ $errors->has('data_nascimento') ? ' has-danger' : '' }}">
                       <input class="form-control{{ $errors->has('data_nascimento') ? ' is-invalid' : '' }}" name="data_nascimento" id="input-data_nascimento" type="text" placeholder="{{ __('ano-mês-dia') }}"  required="true" aria-required="true" />
                       @if ($errors->has('data_nascimento'))
+                      
                         <span id="data_nascimento-error" class="error text-danger" for="input-data_nascimento">{{ $errors->first('data_nascimento') }}</span>
                       @endif
                     </div>
@@ -101,6 +102,17 @@
                         </div>
                       </div>
                     </div>
+                     <div class="row">
+            <label class="col-sm-2 col-form-label">{{ __('Sexo') }}</label>
+                  <div class="col-sm-3">
+                    <select id="inputBlood" name="d_sexo" class="custom-select" >
+                      <option selected>Selecionar</option>
+                      <option value="F">F</option>
+                      <option value="M">M</option>
+                      
+                  </select>
+                </div>
+          </div>
                     <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Endereço') }}</label>
                   <div class="col-sm-8">

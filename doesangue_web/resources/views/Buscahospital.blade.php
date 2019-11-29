@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'Bancos-Sangue', 'titlePage' => __('Bancos-Sangue')])
+@extends('layouts.app', ['activePage' => 'Bancos-Sangue', 'titlePage' => __('DoeSangue.org')])
 
 @section('content')
 <div class="content">

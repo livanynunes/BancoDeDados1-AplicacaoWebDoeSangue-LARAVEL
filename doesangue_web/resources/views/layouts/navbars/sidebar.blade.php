@@ -47,6 +47,30 @@
         <span class="sidebar-normal"> {{ __('Bancos de sangue') }} </span>
       </a>
     </li>
+    <li class="nav-item{{ $activePage == 'Doacao-consulta' ? ' active' : '' }}">
+      <a class="nav-link" href="{{ route('doacao.index') }}">
+        {{-- <i class="material-icons">assignment_ind</i> --}}
+        <i class="material-icons">favorite_border</i>
+
+        <span class="sidebar-normal"> {{ __('Doações ') }} </span>
+      </a>
+    </li>
+     <li class="nav-item{{ $activePage == 'Relatorio-tipo' ? ' active' : '' }}">
+      <a class="nav-link" href="{{ route('relatorio.tipo') }}">
+        {{-- <i class="material-icons">assignment_ind</i> --}}
+        <i class="material-icons">assessment</i>
+        <span class="sidebar-normal"> {{ __('Relatório por tipo ') }} </span>
+      </a>
+
+    </li>
+    <li class="nav-item{{ $activePage == 'Relatorio-banco' ? ' active' : '' }}">
+      <a class="nav-link" href="{{ route('relatorio.banco') }}">
+        {{-- <i class="material-icons">assignment_ind</i> --}}
+        <i class="material-icons">assessment</i>
+        <span class="sidebar-normal"> {{ __('Relatório por banco ') }} </span>
+      </a>
+
+    </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('logout') }}">
           <i class="material-icons">power_settings_new</i>
@@ -54,12 +78,12 @@
         </a>
       </li>
 
-      <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
+      {{-- <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('table') }}">
           <i class="material-icons">content_paste</i>
             <p>{{ __('Table List') }}</p>
         </a>
-      </li>
+      </li> --}}
       
       
      {{--  <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">

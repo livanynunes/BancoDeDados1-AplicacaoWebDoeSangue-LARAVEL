@@ -75,6 +75,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profileAdmin.password', 'uses' => 'ProfileController@password']);
 
 	Route::get('/bancos', ['as' => 'bancos.index', 'uses' => 'HomeController@bancos']);
+
+	Route::get('/relatorio/tipo', ['as' => 'relatorio.tipo', 'uses' => 'HomeController@relatoriotipo']);
+
+	Route::get('/relatorio/banco', ['as' => 'relatorio.banco', 'uses' => 'HomeController@relatoriobanco']);
+
+	Route::get('/doacoes', ['as' => 'doacao.index', 'uses' => 'HomeController@doacoes']);
+
 	Route::get('/search','UserController@search');
 });
 

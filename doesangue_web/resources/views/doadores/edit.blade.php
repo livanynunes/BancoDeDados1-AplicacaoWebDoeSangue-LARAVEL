@@ -1,5 +1,5 @@
 {{-- ////editit --}}
-@extends('layouts.app', ['activePage' => 'doador-management', 'titlePage' => __('Editar doador')])
+@extends('layouts.app', ['activePage' => 'doador-management', 'titlePage' => __('DoeSangue.org')])
 
 
 
@@ -81,7 +81,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
+          <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Tipo Sanguíneo') }}</label>
                   <div class="col-sm-3">
                     <select id="inputBlood" name="tipo_sangue" class="custom-select" >
@@ -96,22 +96,36 @@
                       <option value="O-">Tipo O-</option>
                   </select>
                 </div>
+
                   <label class="col-sm-2 col-form-label">{{ __('Peso') }}</label>
-                  <div class="col-sm-3">
-                  <div class="form-group{{ $errors->has('d_peso') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('d_peso') ? ' is-invalid' : '' }}" name="d_peso" id="input-d_peso" type="d_peso" placeholder="{{ __('Informe o peso') }}" value="{{ old('d_peso', $users->d_peso) }}" required="true" aria-required="true"/>
-                      @if ($errors->has('d_peso'))
-                        <span id="d_peso-error" class="error text-danger" for="input-d_peso">{{ $errors->first('d_peso') }}</span>
-                      @endif
+                    <div class="col-sm-3">
+                      <div class="form-group{{ $errors->has('d_peso') ? ' has-danger' : '' }}">
+                          <input class="form-control{{ $errors->has('d_peso') ? ' is-invalid' : '' }}" name="d_peso" id="input-d_peso" type="d_peso" placeholder="{{ __('Informe o peso') }}" value="{{ old('d_peso', $users->d_peso) }}" required="true" aria-required="true"/>
+                          @if ($errors->has('d_peso'))
+                            <span id="d_peso-error" class="error text-danger" for="input-d_peso">{{ $errors->first('d_peso') }}</span>
+                          @endif
+                      </div>
                     </div>
-                  </div>
+
+          </div>
+
+          <div class="row">
+            <label class="col-sm-2 col-form-label">{{ __('Sexo') }}</label>
+                  <div class="col-sm-3">
+                    <select id="inputBlood" name="d_sexo" class="custom-select" >
+                      <option value="{{ old('d_sexo', $users->d_sexo) }}" selected>{{$users->d_sexo}}</option>
+                      <option value="F">F</option>
+                      <option value="M">M</option>
+                      
+                  </select>
                 </div>
+          </div>
               
           <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Endereço') }}</label>
                   <div class="col-sm-8">
                     <div class="form-group{{ $errors->has('d_endereco') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('d_endereco') ? ' is-invalid' : '' }}" name="d_endereco" id="input-d_endereco" type="text" placeholder="{{ __('Nome') }}" value="{{ old('d_endereco', $users->d_endereco) }}" required="true" aria-required="true" />
+                      <input class="form-control{{ $errors->has('d_endereco') ? ' is-invalid' : '' }}" name="d_endereco" id="input-d_endereco" type="text" placeholder="{{ __('Endereço') }}" value="{{ old('d_endereco', $users->d_endereco) }}" required="true" aria-required="true" />
                       @if ($errors->has('d_endereco'))
                         <span id="d_endereco-error" class="error text-danger" for="input-d_endereco">{{ $errors->first('d_endereco') }}</span>
                       @endif

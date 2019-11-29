@@ -64,6 +64,7 @@ class GerenciarDoadorController extends Controller
 				        		'email' => $request->email,
 				        		'password' => Hash::make($request->get('password')),
 				        		'd_peso' => $request->d_peso,
+                                'd_sexo' => $request->d_sexo,
 				        		'tipo_sangue' => $request->tipo_sangue,
     							]);
 
@@ -103,6 +104,7 @@ class GerenciarDoadorController extends Controller
         		'd_telefone' => $request->d_telefone,
         		'email' => $request->email,
         		'd_peso' => $request->d_peso,
+                'd_sexo' => $request->d_sexo,
         		'tipo_sangue' => $request->tipo_sangue,
     	]);
 

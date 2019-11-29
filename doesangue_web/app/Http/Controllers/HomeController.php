@@ -29,6 +29,21 @@ class HomeController extends Controller
         return view('Buscahospital');
     }
 
+    public function doacoes()
+    {
+        return view('doacoesFeitas');
+    }
+
+    public function relatoriotipo()
+    {
+        return view('RelatorioTipo');
+    }
+
+    public function relatoriobanco()
+    {
+        return view('RelatorioBanco');
+    }
+
     public function logout()
     {
         return view('welcome');

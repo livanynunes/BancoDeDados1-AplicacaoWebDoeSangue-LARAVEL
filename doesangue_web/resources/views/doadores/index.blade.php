@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'doador-management', 'titlePage' => __('Gerenciar doadores')])
+@extends('layouts.app', ['activePage' => 'doador-management', 'titlePage' => __('DoeSangue.org')])
 
 @section('content')
   <div class="content">
