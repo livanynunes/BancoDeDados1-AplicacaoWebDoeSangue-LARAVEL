@@ -29,7 +29,15 @@
           <p> {{ __('Doações Feitas') }} </p>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('logout') }}">
+          <i class="material-icons">power_settings_new</i>
+          <p> {{ __('Sair') }} </p>
+        </a>
+      </li>
      
     </ul>
   </div>
 </div>
+
