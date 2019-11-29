@@ -31,6 +31,11 @@ class DoadorController extends Controller
         return view('doador');
     }
 
+    public function duvidas()
+    {
+        return view('duvidas');
+    }
+
 
     public function doador_edit(){
         return view('profileDoador.edit');

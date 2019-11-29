@@ -86,6 +86,8 @@ Route::prefix('doador')->group(function(){
 
 	Route::get('/', 'DoadorController@index')->name('doador.dashboard');
 
+	Route::get('/duvidas', ['as' => 'duvidas.doador', 'uses' => 'DoadorController@duvidas']);
+
 	Route::get('/profile', ['as' => 'profileDoador.edit', 'uses' => 'DoadorController@doador_edit']);
 
 	// Route::get('/bancosDeSangue', ['as' => 'pagesDoadores.index', 'uses' => 'DoadorController@indexBanco']);
@@ -101,6 +103,8 @@ Route::prefix('doador')->group(function(){
 	// Route::post('profile', 'DoadorController@update')->name('profile.update');
 	
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'DoadorController@password']);
+
+
 
 
 });
