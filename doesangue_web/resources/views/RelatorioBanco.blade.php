@@ -23,7 +23,7 @@
                       </th>
 
                       <th>
-                        {{ __('Quantidade') }}
+                        {{ __('Quantidade de doações') }}
                       </th>
                       
 
@@ -31,17 +31,10 @@
                     <tbody>
                       @php
                         {{
-                          
-                          
 
                             $doacoes = DB::table('doacao')->select('Bsangue', \DB::raw('COUNT(id) as amount'))
                               ->groupBy('Bsangue')
                               ->get();
-
-                            // $teste = DB::table('localbanco')->select('Bnumero')->where
-
-
-                            
                         }}
 
                       @endphp

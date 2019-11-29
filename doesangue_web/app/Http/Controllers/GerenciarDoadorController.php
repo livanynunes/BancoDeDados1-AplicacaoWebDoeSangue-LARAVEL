@@ -11,7 +11,8 @@ use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Collection;
-
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 
 class GerenciarDoadorController extends Controller
@@ -57,7 +58,7 @@ class GerenciarDoadorController extends Controller
 
         $users = DB::table('doadores')->insert([
         						'name' => $request->name,
-				        		'data_nascimento' => $request->data_nascimento,
+				        		'data_nascimento' => $request->data_nascimento.' '.'00:00:00',
 				        		'd_cpf' => $request->d_cpf,
 				        		'd_endereco' => $request->d_endereco,
 				        		'd_telefone' => $request->d_telefone,
@@ -79,7 +80,7 @@ class GerenciarDoadorController extends Controller
      */
     public function edit($user_id)
     {
-    	$users = DB::table('doadores')->find($user_id);
+    	$users = DB::table('doadores')->find($user_id)->paginate(15);
 
         return view('doadores.edit', compact('users'));
         // return view('doadores.edit');

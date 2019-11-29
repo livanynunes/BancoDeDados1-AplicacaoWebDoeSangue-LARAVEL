@@ -125,6 +125,7 @@
                       @endforeach
                     </tbody>
                   </table>
+                  {{ $doadores->links() }}
                 </div>
               </div>
             </div>

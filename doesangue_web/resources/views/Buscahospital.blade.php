@@ -43,9 +43,8 @@
                       @php
                         {{$bancodesangue= DB::table('bancodesangue')
                         ->join('localbanco', 'bancodesangue.id', '=', 'localbanco.Bnumero')
-                        ->join('doacao', 'bancodesangue.id', '=', 'doacao.Bsangue')
                         ->join('users','bancodesangue.gerente_cpf','=','users.user_cpf')
-                        ->select('bancodesangue.nome', 'doacao.sangue_tipo','localbanco.Blocal','users.name')
+                        ->select('bancodesangue.nome','localbanco.Blocal','users.name')
                         ->get();
                         }}
                       @endphp

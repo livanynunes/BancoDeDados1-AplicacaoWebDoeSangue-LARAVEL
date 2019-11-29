@@ -31,9 +31,9 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('logout') }}">
+        <a class="nav-link" href="{{ route('logout') }}"  onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Sair') }} 
           <i class="material-icons">power_settings_new</i>
-          <p> {{ __('Sair') }} </p>
+          {{-- <p> {{ __('Sair') }} </p> --}}
         </a>
       </li>
      
