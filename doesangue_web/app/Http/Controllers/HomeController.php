@@ -24,6 +24,11 @@ class HomeController extends Controller
         return view('dashboard');
     }
 
+    public function bancos()
+    {
+        return view('Buscahospital');
+    }
+
     public function logout()
     {
         return view('welcome');

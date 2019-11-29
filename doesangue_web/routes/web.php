@@ -73,6 +73,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profileAdmin.update', 'uses' => 'ProfileController@update']);
 	
 	Route::put('profile/password', ['as' => 'profileAdmin.password', 'uses' => 'ProfileController@password']);
+
+	Route::get('/bancos', ['as' => 'bancos.index', 'uses' => 'HomeController@bancos']);
+	Route::get('/search','UserController@search');
 });
 
 

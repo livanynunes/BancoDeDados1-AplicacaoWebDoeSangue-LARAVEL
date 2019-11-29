@@ -1,139 +1,70 @@
-@extends('layouts.app', ['activePage' => 'table', 'titlePage' => __('Table List')])
+@extends('layouts.app', ['activePage' => 'Bancos-Sangue', 'titlePage' => __('Bancos-Sangue')])
 
 @section('content')
 <div class="content">
   <div class="container-fluid">
+   {{--  <div class="row">
+      <div class="col-md-4">
+        <form action="/search" method="get">
+          <div class="input-group">
+            <input type="search" name="search" class="form-control">
+            <span class="input-group-prepend">
+              <button type="submit" class="btn btn-danger">Buscar</button>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div> --}}
     <div class="row">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title ">Simple Table</h4>
-            <p class="card-category"> Here is a subtitle for this table</p>
+
+            <h4 class="card-title ">Bancos de sangue</h4>
+            <p class="card-category"> Aqui estão todos os bancos cadastrados</p>
+
           </div>
           <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
+            <div class="card-body table-responsive">
+              <table class="table table-hover">
                 <thead class=" text-primary">
-                  <th>
-                    ID
-                  </th>
-                  <th>
-                    Name
-                  </th>
-                  <th>
-                    Country
-                  </th>
-                  <th>
-                    City
-                  </th>
-                  <th>
-                    Salary
-                  </th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      1
-                    </td>
-                    <td>
-                      Dakota Rice
-                    </td>
-                    <td>
-                      Niger
-                    </td>
-                    <td>
-                      Oud-Turnhout
-                    </td>
-                    <td class="text-primary">
-                      $36,738
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      2
-                    </td>
-                    <td>
-                      Minerva Hooper
-                    </td>
-                    <td>
-                      Curaçao
-                    </td>
-                    <td>
-                      Sinaai-Waas
-                    </td>
-                    <td class="text-primary">
-                      $23,789
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      3
-                    </td>
-                    <td>
-                      Sage Rodriguez
-                    </td>
-                    <td>
-                      Netherlands
-                    </td>
-                    <td>
-                      Baileux
-                    </td>
-                    <td class="text-primary">
-                      $56,142
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      4
-                    </td>
-                    <td>
-                      Philip Chaney
-                    </td>
-                    <td>
-                      Korea, South
-                    </td>
-                    <td>
-                      Overland Park
-                    </td>
-                    <td class="text-primary">
-                      $38,735
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      5
-                    </td>
-                    <td>
-                      Doris Greene
-                    </td>
-                    <td>
-                      Malawi
-                    </td>
-                    <td>
-                      Feldkirchen in Kärnten
-                    </td>
-                    <td class="text-primary">
-                      $63,542
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      6
-                    </td>
-                    <td>
-                      Mason Porter
-                    </td>
-                    <td>
-                      Chile
-                    </td>
-                    <td>
-                      Gloucester
-                    </td>
-                    <td class="text-primary">
-                      $78,615
-                    </td>
-                  </tr>
-                </tbody>
+                      <th>
+                          {{ __('Nome') }}
+                      </th>
+                      <th>
+                        {{ __('Local') }}
+                      </th>
+                      <th>
+                        {{ __('Gerente') }}
+                      </th>
+
+                    </thead>
+                    <tbody>
+                      @php
+                        {{$bancodesangue= DB::table('bancodesangue')
+                        ->join('localbanco', 'bancodesangue.id', '=', 'localbanco.Bnumero')
+                        ->join('doacao', 'bancodesangue.id', '=', 'doacao.Bsangue')
+                        ->join('users','bancodesangue.gerente_cpf','=','users.user_cpf')
+                        ->select('bancodesangue.nome', 'doacao.sangue_tipo','localbanco.Blocal','users.name')
+                        ->get();
+                        }}
+                      @endphp
+                      @foreach($bancodesangue as $banco)
+                        <tr>
+                          <td>
+                            {{ $banco->nome }}
+                          </td>
+                          <td>
+                            {{ $banco->Blocal }}
+                          </td>
+                          <td>
+                            {{ $banco->name }}
+                          </td>
+                          
+                          
+                        </tr>
+                      @endforeach
+                    </tbody>
               </table>
             </div>
           </div>

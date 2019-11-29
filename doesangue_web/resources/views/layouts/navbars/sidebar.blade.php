@@ -39,6 +39,14 @@
         <span class="sidebar-normal"> {{ __('Gerenciar doadores') }} </span>
       </a>
     </li>
+    <li class="nav-item{{ $activePage == 'Bancos-Sangue' ? ' active' : '' }}">
+      <a class="nav-link" href="{{ route('bancos.index') }}">
+        {{-- <i class="material-icons">assignment_ind</i> --}}
+        <i class="material-icons">dns</i>
+
+        <span class="sidebar-normal"> {{ __('Bancos de sangue') }} </span>
+      </a>
+    </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('logout') }}">
           <i class="material-icons">power_settings_new</i>
