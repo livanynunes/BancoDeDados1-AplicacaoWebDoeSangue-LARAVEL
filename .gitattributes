@@ -1,5 +1,5 @@
 * linguist-vendored
 *.php linguist-vendored=false
-*.html linguist-language=Php
+*.sql linguist-detectable=true
 
 CHANGELOG.md export-ignore
